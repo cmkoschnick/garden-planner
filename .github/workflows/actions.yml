@@ -20,4 +20,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build project
-        run: g++ hello.cpp -std=c++17 -Wall -Wextra -Werror -o firstIO
+        run: g++ hello.cpp -std=c++17 -Wall -Wextra -Werror -o testrepo
