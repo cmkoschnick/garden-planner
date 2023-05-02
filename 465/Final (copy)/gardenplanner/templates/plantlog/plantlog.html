@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Plant Log</title>
+  {% include "bootstrap.html" %}
+  {% load static %}
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap4.min.css">
+  <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<body>
+  {% include "navigation.html" %}
+	<div class="jumbotron">
+	  <h1>Plant Log Entries</h1>
+	  {% if not table_data %}
+	  	</p>There are no Plant Log entries to display.</p>
+	  {% else %}
+	<table id="myTable" class="table table-striped" border="1">
+	    <thead>
+			<tr>
+			<th>Name</th>
+			<th>Season</th>
+      <th>Companion Plants</th>
+      <th>Incompatible Plants</th>
+			<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for row in table_data %}
+				<tr>
+				<td><a href="/plantlog/entry/{{row.id}}/">{{ row.name }}</a></td>
+				<td>{{ row.season }}</td>
+        	<td>{{ row.companions }}</td>
+          <td>{{ row.incompatible }}</td>
+				<td>
+					<a class="btn btn-primary" href="/plantlog/edit/{{ row.id }}/">Edit</a>
+					<a class="btn btn-primary" href="#" onclick="confirmDeleteModal({{ row.id }})">Delete</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endif %}
+	  	<form method="GET" action="/plantlog/add/">
+	    	<input type="submit" class="btn btn-primary" value = "Add Plant Entry">
+	  	</form>
+	</div>
+
+  <!-- Modal -->
+  <div id="deleteModal" class="modal fade" role='dialog'>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Delete Plant Entry</h4>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete Plant Entry number <div id="xyx"></div></div>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <span id= 'deleteButton'></span>
+        </div>
+      </div>
+    </div>
+
+  <!--Modal ends here--->
+  <script>
+	$(document).ready(function () {
+    	$("#myTable").DataTable();
+	});
+  </script>
+</body>
+</html>
