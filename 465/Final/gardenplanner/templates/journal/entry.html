@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Journal Entry</title>
+        {% include "bootstrap.html" %}
+        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
+    </head>
+    <body>
+        {% include "navigation.html" %}
+        <div class="jumbotron">
+            <h1>Edit Journal Entry</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form_data %}
+                  <p> <h3>{{ field.label }}:</h3> {{field.value}} </p>
+                {% endfor %}
+
+            </form>
+        </div>
+    </body>
+</html>

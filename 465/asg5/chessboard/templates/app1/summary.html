@@ -1,0 +1,23 @@
+<html>
+     <head>
+	{% load static %}
+    	{% include "bootstrap.html" %}
+    	{% include "navigation.html" %}
+    	<script src="{%static 'chess.js' %}"></script>
+    	<link rel="stylesheet" href="{%static 'chess.css' %}" />
+    </head>
+    <body>
+    <h2> CINS 465: Assignment 4 by Chloe Koschnick </h6>
+    <h3> Chess Piece Summary </h3>
+    <hr></hr>
+		<p>The pieces and their allowed moves:<p>
+		<ul>
+			 <li><strong>King:</strong> The king may move one square in any direction.</li>
+			 <li><strong>Queen:</strong> The queen can move any number of squares in any one direction.</li>
+			 <li><strong>Rook:</strong> Rooks may move any number of squares forwards, backwards, or side to side.</li>
+			 <li><strong>Bishop:</strong> Bishops may move any number of squares diagonally.</li>
+			 <li><strong>Knight:</strong> Knights may move two squares forward or backward in combination  with one square sideways, OR two squares sideways and one square forwards or backwards.</li>
+			 <li><strong>Pawn:</strong> The pawns may move 2 squares forward on it's first move, or one square forwards otherwise.  Can capture on direct adjacent diagonals.</li>
+		</ul>
+		<hr></hr>
+    <body>
