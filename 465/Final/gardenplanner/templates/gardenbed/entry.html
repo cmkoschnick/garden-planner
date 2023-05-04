@@ -2,19 +2,46 @@
     <head>
         <meta charset="utf-8">
         <title>{{ form_data.name.value }}</title>
+        {% load static %}
+        {% load bootstrap4 %}
         {% include "bootstrap.html" %}
         <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet" />
     </head>
     <body>
         {% include "navigation.html" %}
         <div class="jumbotron">
-            <form method="POST">
+
                 {% csrf_token %}
                 {% for field in form_data %}
                   <p> <h4>{{ field.label }}:</h4> {{field.value}} </p>
                 {% endfor %}
 
-            </form>
+              <p> And the table looks like:</p>
+              <table id="t{{form_data.id}}" border="1" align="center" class="table-responsive, ">
+              {% for row in rows %}
+              <tr>
+                {% for name,value in row.items %}
+                  <td id="{{name}}">
+                    <div>{{value}}</div>
+                  </td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+
+        </table>
+          <tr>
+          <th colspan="9">
+            <div class="container" align="center">
+              <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form bed_form %}
+                <button type="submit" class="btn btn-primary" name="move">Add Plant</button>
+              </form>
+            </div>
+          </th>
+      </tr>
+        </table>
+
         </div>
     </body>
 </html>

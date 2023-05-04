@@ -1,5 +1,6 @@
 from django import forms
 from gardenbed.models import BedCategory, BedEntry
+from django.core import validators
 
 class BedCreationForm(forms.ModelForm):
     width = forms.IntegerField()
@@ -10,3 +11,7 @@ class BedCreationForm(forms.ModelForm):
     class Meta():
         model = BedEntry
         fields = ('width', 'height', 'name', 'description', 'season')
+
+class BedEntryForm(forms.Form):
+    location=forms.CharField(min_length=4, max_length=4)
+    value = forms.CharField(min_length=1, max_length=100)
